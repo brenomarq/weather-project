@@ -42,6 +42,7 @@ app.post("/search", async (req, res) => {
                 city: response.data[0].name,
                 temp: parseInt(result.data.main.temp),
                 weather: result.data.weather[0].main,
+                icon: result.data.weather[0].icon,
                 hum: result.data.main.humidity,
                 winspeed: result.data.wind.speed,
             }

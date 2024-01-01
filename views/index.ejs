@@ -9,24 +9,55 @@
 <body>
     <h1>Weather Witcher</h1>
 
-    <h2>Tell me your location</h2>
-    <form action="/search" method="POST">
-        <label for="searchInput"></label>
-        <input type="text" id="searchInput" name="search">
-        <button id="search-button" type="submit">Search</button>
-    </form>
+    <div id="container">
+        <div id="cont-header">
+            <h2 class="title">Tell me a location:</h2>
+            <form id="seachForm" action="/search" method="POST">
+                <label for="searchInput"></label>
+                <input type="text" id="searchInput" name="search">
+                <button id="search-button" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                    </svg>
+                </button>
+            </form>
+        </div>
 
-    <%# This part renders the weather information of the specified location %>
-    <% if (locals.data) { %>
-        <h3>
-            <%= data.city %>
-            <img src="https://flagsapi.com/<%= data.country %>/flat/64.png" alt="Flag of the country">
-        </h3>
-        <h4> <%= data.temp %> </h4>
-        <p> <%= data.weather %> </p>
-        <p> <%= data.hum %>% </p>
-        <p> <%= data.winspeed %>m/s </p>
-    <% } else { %>
-    <% } %>
+        <%# This part renders the weather information of the specified location %>
+        <div id="cont-information">
+            <% if (locals.data) { %>
+                <div id="cont-information">
+                    <div class="location">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+                        </svg>
+                        <h3><%= data.city %></h3>
+                        <img src="https://flagsapi.com/<%= data.country %>/flat/32.png" alt="Flag of <%= data.country %>">
+                    </div>
+                    <div class="temp">
+                        <p class="main"><%= data.temp %>°C</p>
+                    </div>
+                    <div class="weather">
+                        <p><%= data.weather %></p>
+                        <img src="https://openweathermap.org/img/wn/<%= data.icon %>@2x.png" height="70px" alt="Weather icon">
+                    </div>
+                    <div class="extra">
+                        <p>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-droplet-fill" viewBox="0 0 16 16">
+                                <path d="M8 16a6 6 0 0 0 6-6c0-1.655-1.122-2.904-2.432-4.362C10.254 4.176 8.75 2.503 8 0c0 0-6 5.686-6 10a6 6 0 0 0 6 6M6.646 4.646l.708.708c-.29.29-1.128 1.311-1.907 2.87l-.894-.448c.82-1.641 1.717-2.753 2.093-3.13Z"/>
+                            </svg> <%= data.hum %>%
+                             |
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wind" viewBox="0 0 16 16">
+                                <path d="M12.5 2A2.5 2.5 0 0 0 10 4.5a.5.5 0 0 1-1 0A3.5 3.5 0 1 1 12.5 8H.5a.5.5 0 0 1 0-1h12a2.5 2.5 0 0 0 0-5m-7 1a1 1 0 0 0-1 1 .5.5 0 0 1-1 0 2 2 0 1 1 2 2h-5a.5.5 0 0 1 0-1h5a1 1 0 0 0 0-2M0 9.5A.5.5 0 0 1 .5 9h10.042a3 3 0 1 1-3 3 .5.5 0 0 1 1 0 2 2 0 1 0 2-2H.5a.5.5 0 0 1-.5-.5"/>
+                            </svg> <%= data.winspeed %>m/s
+                        </p>
+                    </div>
+                </div>
+            <% } else { %>
+            <% } %>
+        </div>
+
+    </div>
+
 </body>
 </html>
