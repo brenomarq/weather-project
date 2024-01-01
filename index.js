@@ -2,12 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 
+// Import constant values
 const app = express();
 const port = 3000;
 const GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct";
 const FORECAST_URL = "https://api.openweathermap.org/data/2.5/weather";
 const apiKey = ""; // Here you must place your apikey
 
+// Used Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -33,7 +35,17 @@ app.post("/search", async (req, res) => {
                 appid: apiKey,
                 units: "metric",
             }});
-        console.log(result.data);
+        // Index.ejs is rendered back to the user with the requested information.
+        res.render("index.ejs", {
+            data: {
+                country: response.data[0].country,
+                city: response.data[0].name,
+                temp: parseInt(result.data.main.temp),
+                weather: result.data.weather[0].main,
+                hum: result.data.main.humidity,
+                winspeed: result.data.wind.speed,
+            }
+        });
     } catch (error) {
         console.log("Deu erro :'(");
     }
