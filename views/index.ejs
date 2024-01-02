@@ -7,12 +7,12 @@
     <link rel="stylesheet" type="text/css" href="styles/default.css">
 </head>
 <body>
-    <header>
-        <h1> Weather Witcher </h1>
-    </header>
-
+    <div id="background"></div>
     <div id="container">
         <div id="cont-header">
+            <a href="/" class="main-title">
+                <h1>Weather Witcher ☀️</h1>
+            </a>
             <h2 class="title">Tell me a location:</h2>
             <form id="seachForm" action="/search" method="POST">
                 <label for="searchInput"></label>
@@ -55,13 +55,15 @@
                         </p>
                     </div>
                 </div>
+            <%# This part is rendered when an error occurs %>
             <% } else if (locals.error) { %>
                 <div id="cont-information">
                     <div class="error-msg">
                         <h2> Not Found </h2>
-                        <p> Unfortunately we could not found a matching result for the requested location. </p>
+                        <p> Unfortunately we could not find a matching result for the requested location. </p>
                     </div>
                 </div>
+            <%# This part is rendered as default %>
             <% } else { %>
                 <div id="cont-information">
                     <form id="defaultSearch" action="/search" method="POST">
@@ -83,6 +85,5 @@
         </div>
 
     </div>
-
 </body>
 </html>
