@@ -7,7 +7,9 @@
     <link rel="stylesheet" type="text/css" href="styles/default.css">
 </head>
 <body>
-    <h1>Weather Witcher</h1>
+    <header>
+        <h1> Weather Witcher </h1>
+    </header>
 
     <div id="container">
         <div id="cont-header">
@@ -53,7 +55,30 @@
                         </p>
                     </div>
                 </div>
+            <% } else if (locals.error) { %>
+                <div id="cont-information">
+                    <div class="error-msg">
+                        <h2> Not Found </h2>
+                        <p> Unfortunately we could not found a matching result for the requested location. </p>
+                    </div>
+                </div>
             <% } else { %>
+                <div id="cont-information">
+                    <form id="defaultSearch" action="/search" method="POST">
+                        <button type="submit" value="São Paulo" name="search" class="initial"> São Paulo
+                            <img src="https://flagsapi.com/BR/flat/32.png" alt="Flag of Brazil"> </button>
+                        <button type="submit" value="New York City" name="search" class="initial"> New York
+                            <img src="https://flagsapi.com/US/flat/32.png" alt="Flag of US"> </button>
+                        <button type="submit" value="London" name="search" class="initial"> London
+                            <img src="https://flagsapi.com/GB/flat/32.png" alt="Flag of UK"> </button>
+                        <button type="submit" value="Paris" name="search" class="initial"> Paris
+                            <img src="https://flagsapi.com/FR/flat/32.png" alt="Flag of France"> </button>
+                        <button type="submit" value="Moscow" name="search" class="initial"> Moscow
+                            <img src="https://flagsapi.com/RU/flat/32.png" alt="Flag of Russia"> </button>
+                        <button type="submit" value="Seoul" name="search" class="initial"> Seoul
+                            <img src="https://flagsapi.com/KR/flat/32.png" alt="Flag of South Korea"> </button>
+                    </form>
+                </div>
             <% } %>
         </div>
 

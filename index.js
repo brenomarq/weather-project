@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import axios from "axios";
 
-// Import constant values
+// Important constant values
 const app = express();
 const port = 3000;
 const GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct";
@@ -48,7 +48,7 @@ app.post("/search", async (req, res) => {
             }
         });
     } catch (error) {
-        console.log("Deu erro :'(");
+        res.render("index.ejs", { error: error });
     }
 });
 
