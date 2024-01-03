@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 const GEOCODE_URL = "http://api.openweathermap.org/geo/1.0/direct";
 const FORECAST_URL = "https://api.openweathermap.org/data/2.5/weather";
-const apiKey = "5ff5e0cc3da9488d211cabbdbd6c76af"; // Here you must place your apikey
+const apiKey = ""; // Here you must place your apikey
 
 // Used Middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
